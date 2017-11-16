@@ -71,7 +71,7 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
      * 添加布局和findId
      */
     private void addViewAndFindId() {
-        mHeaderLayout = LayoutInflater.from(getContext()).inflate(R.layout.header_layout, null);
+        mHeaderLayout = inflate(getContext(),R.layout.header_layout, null);
         mArrowIv = mHeaderLayout.findViewById(R.id.refresh_arrow);
         mHeaderStateTv = mHeaderLayout.findViewById(R.id.header_state_tv);
         mLoadingView = mHeaderLayout.findViewById(R.id.loading_view);
