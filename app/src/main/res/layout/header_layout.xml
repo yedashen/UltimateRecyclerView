@@ -10,30 +10,25 @@
         android:paddingTop="10dp">
 
         <LinearLayout
+            android:id="@+id/pull_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/refresh_arrow" />
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/header_state_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="下拉刷新" />
 
                 <TextView
+                    android:id="@+id/pre_refresh_time_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="上次刷新时间"
@@ -42,16 +37,22 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/refresh_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal">
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/pull_layout"
+            android:paddingRight="30dp"
+            android:src="@mipmap/refresh_arrow" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="正在刷新" />
-        </LinearLayout>
+        <shen.da.ye.ultimaterecyclerview.view.animation.RecyclerViewLoadingView
+            android:id="@+id/loading_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/pull_layout"
+            android:paddingRight="40dp"
+            android:visibility="gone" />
     </RelativeLayout>
 </LinearLayout>

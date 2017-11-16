@@ -19,7 +19,7 @@ public interface IRefreshHeader {
     int STATE_RELEASE_TO_REFRESH = 1;
 
     //正在刷新中
-    int STATE_REFREING = 2;
+    int STATE_REFRESHING = 2;
 
     //
     int STATE_DONE = 3;
