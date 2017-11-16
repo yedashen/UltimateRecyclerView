@@ -66,7 +66,7 @@ public interface IRefreshHeader {
      *
      * @return
      */
-    int getVisiableHeight();
+    int getVisibleHeight();
 
     /**
      * 重置头部
