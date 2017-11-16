@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.ViewConfiguration;
 
 import shen.da.ye.ultimaterecyclerview.MyApplication;
+import shen.da.ye.ultimaterecyclerview.view.recyclerview.header.RefreshHeader;
 
 /**
  * @author ChenYe
@@ -14,6 +15,8 @@ import shen.da.ye.ultimaterecyclerview.MyApplication;
  **/
 
 public class UltimateRecyclerView extends RecyclerView {
+
+    private RefreshHeader mRefreshHeader = null;
 
     public UltimateRecyclerView(Context context) {
         this(context, null);
@@ -27,7 +30,16 @@ public class UltimateRecyclerView extends RecyclerView {
         super(context, attrs, defStyle);
         //获取这个手机手指点击最小滑动距离（超过这个距离就算滑动不算点击）
         int scaledTouchSlop = ViewConfiguration.get(MyApplication.mShareInstance).getScaledTouchSlop();
+        initRefreshHeader();
+        initLoadMoreFooter();
+    }
 
+    private void initLoadMoreFooter() {
+
+    }
+
+    private void initRefreshHeader() {
+        mRefreshHeader = new RefreshHeader(getContext());
     }
 
 
