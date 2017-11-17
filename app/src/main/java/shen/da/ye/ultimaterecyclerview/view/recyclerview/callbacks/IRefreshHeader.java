@@ -40,14 +40,14 @@ public interface IRefreshHeader {
      * @param offset    刚刚移动了多少距离
      * @param sumOffset 总共移动了多少距离
      */
-    void onMove(int offset, int sumOffset);
+    void onMove(float offset, float sumOffset);
 
     /**
      * 下拉松开了
      *
      * @return
      */
-    boolean release();
+    boolean onRelease();
 
     /**
      * 刚刚刷新完毕了

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -71,7 +70,7 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
      * 添加布局和findId
      */
     private void addViewAndFindId() {
-        mHeaderLayout = inflate(getContext(),R.layout.header_layout, null);
+        mHeaderLayout = inflate(getContext(), R.layout.header_layout, null);
         mArrowIv = mHeaderLayout.findViewById(R.id.refresh_arrow);
         mHeaderStateTv = mHeaderLayout.findViewById(R.id.header_state_tv);
         mLoadingView = mHeaderLayout.findViewById(R.id.loading_view);
@@ -188,10 +187,10 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
     }
 
     @Override
-    public void onMove(int offset, int sumOffset) {
+    public void onMove(float offset, float sumOffset) {
         //第二个参数只是记录行为(记录一共滑动了多少距离，其实可以直接获取当前头部露出的距离更有实际用途)，实际没有用到
         if (getVisibleHeight() > 0 || offset > 0) {
-            setVisibleHeight(offset + getVisibleHeight());
+            setVisibleHeight((int) (offset + getVisibleHeight()));
             // 未处于刷新状态，更新箭头
             if (mState <= STATE_RELEASE_TO_REFRESH) {
                 if (getVisibleHeight() > mMeasuredHeight) {
@@ -204,7 +203,7 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
     }
 
     @Override
-    public boolean release() {
+    public boolean onRelease() {
         boolean isOnRefresh = false;
         int height = getVisibleHeight();
         //下面这句代码可以屏蔽
