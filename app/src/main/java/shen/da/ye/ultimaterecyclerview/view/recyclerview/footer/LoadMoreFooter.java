@@ -2,7 +2,6 @@ package shen.da.ye.ultimaterecyclerview.view.recyclerview.footer;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.RelativeLayout;
@@ -121,13 +120,14 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
                     mLoadedAllView.setVisibility(GONE);
                 }
 
+                if (mNormalView != null) {
+                    mNormalView.setVisibility(GONE);
+                }
+
                 if (mNetErrorView == null) {
                     mNetErrorView = ((ViewStub) findViewById(R.id.net_error_view_stub)).inflate();
                 }
 
-                if (mNormalView != null) {
-                    mNormalView.setVisibility(GONE);
-                }
 
                 mNetErrorView.setVisibility(isShow ? VISIBLE : GONE);
                 break;
