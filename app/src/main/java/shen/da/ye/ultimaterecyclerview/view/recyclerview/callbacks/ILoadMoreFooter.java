@@ -25,7 +25,7 @@ public interface ILoadMoreFooter {
     void onNoMore();
 
     /**
-     * 重置头部
+     * 重置尾部
      */
     void onReset();
 

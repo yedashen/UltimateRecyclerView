@@ -5,6 +5,8 @@ import android.view.View;
 /**
  * @author ChenYe
  *         created by on 2017/11/15 0015. 16:53
+ *         让header来实现这个接口，然后外部来直接对这个header来操作再间接的实现对header的操作，这样其实更加符
+ *         合代码的维护与质量。其实如果理解起来麻烦的话，你可以直接把这个当做是header。
  **/
 
 public interface IRefreshHeader {

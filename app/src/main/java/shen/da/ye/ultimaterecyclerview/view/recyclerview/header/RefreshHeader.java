@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -34,6 +35,7 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
     private static final int ROTATE_ANIM_DURATION = 180;
     private int mMeasuredHeight;
     private int mState = STATE_NORMAL;
+    private ImageView mRefreshFinishIv;
 
     public RefreshHeader(Context context) {
         this(context, null);
@@ -74,6 +76,9 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
         mArrowIv = mHeaderLayout.findViewById(R.id.refresh_arrow);
         mHeaderStateTv = mHeaderLayout.findViewById(R.id.header_state_tv);
         mLoadingView = mHeaderLayout.findViewById(R.id.loading_view);
+        mRefreshFinishIv = mHeaderLayout.findViewById(R.id.refresh_finish_iv);
+        addView(mHeaderLayout, new LayoutParams(LayoutParams.MATCH_PARENT, 0));
+        setGravity(Gravity.BOTTOM);
     }
 
     /**
@@ -102,15 +107,18 @@ public class RefreshHeader extends LinearLayout implements IRefreshHeader {
             mArrowIv.clearAnimation();
             mArrowIv.setVisibility(View.INVISIBLE);
             mLoadingView.setVisibility(View.VISIBLE);
+            mRefreshFinishIv.setVisibility(GONE);
             smoothScrollTo(mMeasuredHeight);
         } else if (state == STATE_DONE) {
             //刷新完毕
             mArrowIv.setVisibility(View.INVISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);
+            mRefreshFinishIv.setVisibility(VISIBLE);
         } else {
             // 显示箭头图片
             mArrowIv.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.INVISIBLE);
+            mRefreshFinishIv.setVisibility(GONE);
         }
 
         //下面的switch是为了设置头部

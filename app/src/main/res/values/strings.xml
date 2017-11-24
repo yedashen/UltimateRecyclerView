@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UltimateRecyclerView</string>
+    <string name="like_lv">像lv一样的rcv</string>
 </resources>
