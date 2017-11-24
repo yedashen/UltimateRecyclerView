@@ -192,7 +192,7 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                 @Override
                 public int getSpanSize(int position) {
                     if (mSpanSizeLookup == null) {
-                        return isHeader(position) || isFooter(position) || isRefreshHeader(position)
+                        return (isHeader(position) || isFooter(position) || isRefreshHeader(position))
                                 ? gridLayoutManager.getSpanCount() : 1;
                     } else {
                         return (isHeader(position) || isFooter(position) ||
@@ -208,7 +208,6 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView);
         mInnerAdapter.onDetachedFromRecyclerView(recyclerView);
     }
 
@@ -229,13 +228,11 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
-        super.onViewDetachedFromWindow(holder);
         mInnerAdapter.onViewDetachedFromWindow(holder);
     }
 
     @Override
     public void onViewRecycled(RecyclerView.ViewHolder holder) {
-        super.onViewRecycled(holder);
         mInnerAdapter.onViewRecycled(holder);
     }
 
