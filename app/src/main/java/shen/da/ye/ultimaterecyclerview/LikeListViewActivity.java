@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ import shen.da.ye.ultimaterecyclerview.view.recyclerview.devider.DividerDecorati
  * @author ChenYe
  *         created by on 2017/11/23 0023. 16:22
  *         这是个单列的像listView一样功能的，刷新和加载更多
+ *
+ *         问题：
+ *         目前推出activity走了onDestry方法之后，在进入界面走了onCreate()方法，但是这个时候上拉加载更多是
+ *         有问题的。。。。?
  **/
 
 public class LikeListViewActivity extends Activity {
@@ -44,6 +49,7 @@ public class LikeListViewActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_lv);
+        Log.e("Like","onCreate()");
         mUltimateRecyclerView = findViewById(R.id.like_lv_rcv);
         mHandler = new Handler();
         initData();
@@ -149,4 +155,10 @@ public class LikeListViewActivity extends Activity {
             mUltimateRecyclerView.loadMoreComplete(false);
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("Like", "onDestroy()");
+    }
 }
