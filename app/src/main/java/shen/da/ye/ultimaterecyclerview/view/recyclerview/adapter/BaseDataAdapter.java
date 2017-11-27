@@ -1,7 +1,6 @@
 package shen.da.ye.ultimaterecyclerview.view.recyclerview.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -113,7 +112,7 @@ public abstract class BaseDataAdapter<T> extends RecyclerView.Adapter<SuperViewH
     }
 
     /**
-     * 返回点击的实体的数据，这个数据是从adapter里面的集合拿到这个数据，postion也是adapter里面的，
+     * 返回点击的实体的数据，这个数据是从adapter里面的集合拿到这个数据，position也是adapter里面的，
      * 这样拿出来的数据才是最安全的。
      *
      * @param position
@@ -124,5 +123,25 @@ public abstract class BaseDataAdapter<T> extends RecyclerView.Adapter<SuperViewH
             return mDataList.get(position);
         }
         return null;
+    }
+
+    /**
+     * 删除指定的那一条数据
+     *
+     * @param position
+     */
+    public void remove(int position) {
+        this.mDataList.remove(position);
+        notifyItemRemoved(position);
+        if (position != getDataList().size()) {
+            notifyItemRangeChanged(position, this.mDataList.size() - position);
+        }
+    }
+
+    /**
+     *
+     */
+    public List<T> getDataList() {
+        return mDataList;
     }
 }

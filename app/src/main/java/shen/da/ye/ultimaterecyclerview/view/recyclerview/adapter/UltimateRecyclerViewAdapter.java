@@ -39,17 +39,17 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     /**
      * 这个集合专门用来装头部类型的，当然不包括刷新的头部
      */
-    private static final List<Integer> HEADER_TYPES = new ArrayList<>();
+    private final List<Integer> HEADER_TYPES = new ArrayList<>();
 
     /**
      * 专门来装头部view的集合,当然不包括刷新的头部
      */
-    private static final List<View> HEADER_VIEWS = new ArrayList<>();
+    private final List<View> HEADER_VIEWS = new ArrayList<>();
 
     /**
      * 专门装尾部view的集合，不包括加载更多的尾部
      */
-    private static final List<View> FOOTER_VIEWS = new ArrayList<>();
+    private final List<View> FOOTER_VIEWS = new ArrayList<>();
 
     /**
      * 这个是头部的默认type索引，有头部就对其设置itemType 设置 ++;
@@ -105,7 +105,7 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             final int adjPosition = position - (getHeaderViewCount() + 1);
             if (adjPosition < mInnerAdapter.getItemCount()) {
                 Log.i(TAG, "这是在bind数据条目");
-                mInnerAdapter.onBindViewHolder(holder,adjPosition);
+                mInnerAdapter.onBindViewHolder(holder, adjPosition);
                 //下面的点击事件目前在这里写，但是也可以在mInnerAdapter里面的onBindItemHolder里面写，
                 //但是那里面的position是没有处理的，需要自己注意;
                 //并且这下面的点击事件用rxBind来防止重复点击
@@ -223,7 +223,6 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
 
         mInnerAdapter.onViewAttachedToWindow(holder);
-
     }
 
     @Override

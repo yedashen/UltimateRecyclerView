@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import shen.da.ye.ultimaterecyclerview.adapter.LikeLvAdapter;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.UltimateRecyclerView;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.adapter.UltimateRecyclerViewAdapter;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.callbacks.OnItemClickListener;
+import shen.da.ye.ultimaterecyclerview.view.recyclerview.callbacks.OnItemLongClickListener;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.callbacks.OnLoadMoreListener;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.callbacks.OnNetErrorListener;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.callbacks.OnRefreshListener;
@@ -24,7 +26,7 @@ import shen.da.ye.ultimaterecyclerview.view.recyclerview.devider.DividerDecorati
  * @author ChenYe
  *         created by on 2017/11/23 0023. 16:22
  *         这是个单列的像listView一样功能的，刷新和加载更多
- *
+ *         <p>
  *         问题：
  *         目前推出activity走了onDestry方法之后，在进入界面走了onCreate()方法，但是这个时候上拉加载更多是
  *         有问题的。。。。?
@@ -34,7 +36,7 @@ public class LikeListViewActivity extends Activity {
 
     private UltimateRecyclerView mUltimateRecyclerView;
     private ArrayList<String> names = null;
-    private static final int DATA_SIZE = 30;
+    private static final int DATA_SIZE = 10;
     private UltimateRecyclerViewAdapter mUltimateAdapter;
     private Handler mHandler = null;
     private LikeLvAdapter mInnerAdapter;
@@ -49,7 +51,6 @@ public class LikeListViewActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_lv);
-        Log.e("Like","onCreate()");
         mUltimateRecyclerView = findViewById(R.id.like_lv_rcv);
         mHandler = new Handler();
         initData();
@@ -71,14 +72,29 @@ public class LikeListViewActivity extends Activity {
         mUltimateAdapter = new UltimateRecyclerViewAdapter(mInnerAdapter);
         mUltimateRecyclerView.setAdapter(mUltimateAdapter);
 
+        mUltimateRecyclerView.setEmptyView(View.inflate(this, R.layout.empty_view, null));
         setupListener();
     }
 
     private void setupListener() {
+        /**
+         * 单击事件：目前设置的是单击吐司,注意看我下面条目里面的数据的获取
+         */
         mUltimateAdapter.setItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                String itemData = (String) mInnerAdapter.getItemData(position);
+                Toast.makeText(LikeListViewActivity.this, itemData, Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        /**
+         * 长按事件：目前设置的是长按删除一条数据
+         */
+        mUltimateAdapter.setItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(View view, int position) {
+                mInnerAdapter.remove(position);
             }
         });
 
@@ -156,9 +172,4 @@ public class LikeListViewActivity extends Activity {
         }
     };
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e("Like", "onDestroy()");
-    }
 }

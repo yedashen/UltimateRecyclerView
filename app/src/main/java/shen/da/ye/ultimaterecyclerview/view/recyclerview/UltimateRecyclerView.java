@@ -89,7 +89,7 @@ public class UltimateRecyclerView extends RecyclerView {
     /**
      * 数据观察者，这里是实现局部刷新的第一步。
      */
-    private final DataObserver DATA_OBSERVER = new DataObserver();
+    private final RecyclerView.AdapterDataObserver DATA_OBSERVER = new DataObserver();
 
     /**
      * 是否启用加载更多功能,默认是启用的
@@ -187,6 +187,7 @@ public class UltimateRecyclerView extends RecyclerView {
     private void initLoadMoreFooter() {
         mILoadMoreFooter = new LoadMoreFooter(MyApplication.mShareInstance);
         mLoadMoreFooterView = mILoadMoreFooter.getLoadMoreFooter();
+        mLoadMoreFooterView.setVisibility(GONE);
         ViewGroup.LayoutParams layoutParams = mLoadMoreFooterView.getLayoutParams();
         if (layoutParams == null) {
             mLoadMoreFooterView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
@@ -321,7 +322,6 @@ public class UltimateRecyclerView extends RecyclerView {
 
         @Override
         public void onChanged() {
-            super.onChanged();
             Adapter<?> adapter = getAdapter();
             if (adapter != null && adapter instanceof UltimateRecyclerViewAdapter) {
                 UltimateRecyclerViewAdapter ultimateAdapter = (UltimateRecyclerViewAdapter) adapter;
@@ -358,21 +358,18 @@ public class UltimateRecyclerView extends RecyclerView {
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
-            super.onItemRangeChanged(positionStart, itemCount);
             mUltimateAdapter.notifyItemRangeChanged(positionStart +
                     mUltimateAdapter.getHeaderViewCount() + 1, itemCount);
         }
 
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
-            super.onItemRangeInserted(positionStart, itemCount);
             mUltimateAdapter.notifyItemRangeInserted(positionStart +
                     mUltimateAdapter.getHeaderViewCount() + 1, itemCount);
         }
 
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
-            super.onItemRangeRemoved(positionStart, itemCount);
             mUltimateAdapter.notifyItemMoved(positionStart + mUltimateAdapter.getHeaderViewCount()
                     + 1, itemCount);
 
@@ -384,7 +381,6 @@ public class UltimateRecyclerView extends RecyclerView {
 
         @Override
         public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-            super.onItemRangeMoved(fromPosition, toPosition, itemCount);
             int headerViewCount = mUltimateAdapter.getHeaderViewCount();
             mUltimateAdapter.notifyItemRangeChanged(fromPosition + headerViewCount + 1,
                     toPosition + headerViewCount + 1 + itemCount);

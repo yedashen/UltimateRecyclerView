@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <Button
-        android:onClick="forceRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="forceRefresh"
         android:text="强制刷新" />
 
     <shen.da.ye.ultimaterecyclerview.view.recyclerview.UltimateRecyclerView

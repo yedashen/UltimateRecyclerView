@@ -2,6 +2,7 @@ package shen.da.ye.ultimaterecyclerview.view.recyclerview.footer;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.RelativeLayout;
@@ -41,6 +42,7 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
         setFooterState(FooterState.NORMAL, true);
     }
 
+
     public void setFooterState(FooterState state, boolean isShow) {
         if (state == mState) {
             return;
@@ -50,6 +52,7 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
 
         switch (state) {
             case NORMAL:
+                Log.e(TAG, "normal");
                 setOnClickListener(null);
                 if (mLoadingView != null) {
                     mLoadingView.setVisibility(GONE);
@@ -70,6 +73,7 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
                 mNormalView.setVisibility(isShow ? VISIBLE : GONE);
                 break;
             case LOADING:
+                Log.e(TAG, "loading");
                 setOnClickListener(null);
                 if (mLoadedAllView != null) {
                     mLoadedAllView.setVisibility(GONE);
@@ -85,12 +89,12 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
 
                 if (mLoadingView == null) {
                     mLoadingView = ((ViewStub) findViewById(R.id.loading_view_stub)).inflate();
-                    mAnimationView = mLoadingView.findViewById(R.id.loading_view);
                 }
+
                 mLoadingView.setVisibility(isShow ? VISIBLE : GONE);
-                mAnimationView.setVisibility(VISIBLE);
                 break;
             case NO_MORE:
+                Log.e(TAG, "noMore");
                 setOnClickListener(null);
 
                 if (mNetErrorView != null) {
@@ -112,6 +116,7 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
                 mLoadedAllView.setVisibility(isShow ? VISIBLE : GONE);
                 break;
             case NET_WORK_ERROR:
+                Log.e(TAG, "error");
                 if (mLoadingView != null) {
                     mLoadingView.setVisibility(GONE);
                 }
@@ -127,7 +132,6 @@ public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
                 if (mNetErrorView == null) {
                     mNetErrorView = ((ViewStub) findViewById(R.id.net_error_view_stub)).inflate();
                 }
-
 
                 mNetErrorView.setVisibility(isShow ? VISIBLE : GONE);
                 break;

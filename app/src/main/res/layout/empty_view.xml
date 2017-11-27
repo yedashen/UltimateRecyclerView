@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="goLikeListViewActivity"
-        android:text="去Like_LV_ACTIVITY" />
-
+        android:layout_height="match_parent"
+        android:text="暂无数据"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:background="#662a35c7"/>
 </LinearLayout>
