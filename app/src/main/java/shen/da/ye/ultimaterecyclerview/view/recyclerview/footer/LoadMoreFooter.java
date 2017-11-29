@@ -19,12 +19,11 @@ import shen.da.ye.ultimaterecyclerview.view.recyclerview.callbacks.ILoadMoreFoot
 public class LoadMoreFooter extends RelativeLayout implements ILoadMoreFooter {
 
     private static final String TAG = LoadMoreFooter.class.getSimpleName();
-    private FooterState mState = null;
+    private FooterState mState = FooterState.NORMAL;
     private View mLoadingView = null;
     private View mLoadedAllView = null;
     private View mNetErrorView = null;
     private View mNormalView = null;
-    private RecyclerViewLoadingView mAnimationView;
 
 
     public LoadMoreFooter(Context context) {

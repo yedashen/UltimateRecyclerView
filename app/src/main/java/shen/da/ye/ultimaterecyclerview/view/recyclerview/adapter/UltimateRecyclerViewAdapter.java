@@ -44,12 +44,12 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     /**
      * 专门来装头部view的集合,当然不包括刷新的头部
      */
-    private final List<View> HEADER_VIEWS = new ArrayList<>();
+    private List<View> HEADER_VIEWS = new ArrayList<>();
 
     /**
      * 专门装尾部view的集合，不包括加载更多的尾部
      */
-    private final List<View> FOOTER_VIEWS = new ArrayList<>();
+    private List<View> FOOTER_VIEWS = new ArrayList<>();
 
     /**
      * 这个是头部的默认type索引，有头部就对其设置itemType 设置 ++;
@@ -82,7 +82,6 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         this.mInnerAdapter = innerAdapter;
     }
 
-    //TODO
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_REFRESH_HEADER) {
@@ -91,20 +90,24 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             return new ViewHolder(getHeaderViewByItemType(viewType));
         } else if (viewType == TYPE_FOOTER_VIEW) {
             return new ViewHolder(getFirstFooterView());
+        } else {
+            return mInnerAdapter.createViewHolder(parent, viewType);
         }
-        return mInnerAdapter.createViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        if (position == 11) {
+            Log.e(TAG, "11");
+        }
         if (isHeader(position) || isRefreshHeader(position)) {
-            Log.i(TAG, "这是在bindHeader和刷新头部条目");
+            //这是在bindHeader和刷新头部条目
             return;
         }
+        final int adjPosition = position - (getHeaderViewCount() + 1);
         if (mInnerAdapter != null) {
-            final int adjPosition = position - (getHeaderViewCount() + 1);
+            //这是在bind数据条目
             if (adjPosition < mInnerAdapter.getItemCount()) {
-                Log.i(TAG, "这是在bind数据条目");
                 mInnerAdapter.onBindViewHolder(holder, adjPosition);
                 //下面的点击事件目前在这里写，但是也可以在mInnerAdapter里面的onBindItemHolder里面写，
                 //但是那里面的position是没有处理的，需要自己注意;
@@ -128,10 +131,30 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                     });
                 }
             } else {
-                Log.i(TAG, "这是在bindFooter");
+                //这是在bindFooter
+                Log.e(TAG, "这是在bindFooter__position:" + position);
             }
         } else {
-            Log.i(TAG, "mInnerAdapter是null");
+            //mInnerAdapter是null
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            onBindViewHolder(holder, position);
+        } else {
+            if (isHeader(position) || isRefreshHeader(position)) {
+                return;
+            }
+            final int adjPosition = position - (getHeaderViewCount() + 1);
+            int adapterCount;
+            if (mInnerAdapter != null) {
+                adapterCount = mInnerAdapter.getItemCount();
+                if (adjPosition < adapterCount) {
+                    mInnerAdapter.onBindViewHolder(holder, adjPosition, payloads);
+                }
+            }
         }
     }
 
@@ -148,13 +171,9 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     public int getItemViewType(int position) {
         if (isRefreshHeader(position)) {
             return TYPE_REFRESH_HEADER;
-        }
-
-        if (isHeader(position)) {
+        } else if (isHeader(position)) {
             return HEADER_TYPES.get(position - 1);
-        }
-
-        if (isFooter(position)) {
+        } else if (isFooter(position)) {
             return TYPE_FOOTER_VIEW;
         }
 
@@ -174,6 +193,7 @@ public class UltimateRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             if (hasStableIds()) {
                 adjPosition--;
             }
+
             int adapterCount = mInnerAdapter.getItemCount();
             if (adjPosition < adapterCount) {
                 return mInnerAdapter.getItemId(adjPosition);
