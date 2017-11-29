@@ -41,12 +41,14 @@ public class LikeListViewActivity extends Activity {
      */
     private int mRequestCount = 0;
     private static final int REQUEST_ERROR_COUNT = 3;
+    private View mEmptyView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_lv);
         mUltimateRecyclerView = findViewById(R.id.like_lv_rcv);
+        mEmptyView = findViewById(R.id.empty_layout);
         mHandler = new Handler();
         initData();
         initRecyclerView();
@@ -62,7 +64,7 @@ public class LikeListViewActivity extends Activity {
 
         mUltimateRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mUltimateRecyclerView.setEmptyView(View.inflate(this, R.layout.empty_view, null));
+        mUltimateRecyclerView.setEmptyView(mEmptyView);
 
         mInnerAdapter = new LikeLvAdapter();
         mInnerAdapter.setDataList(names);

@@ -328,7 +328,6 @@ public class UltimateRecyclerView extends RecyclerView {
                 Adapter innerAdapter = ultimateAdapter.getInnerAdapter();
                 if (innerAdapter != null && mEmptyView != null) {
                     if (innerAdapter.getItemCount() == 0) {
-                        //TODO 这里的mEmptyView设置为显示，，有毛用？都没有加载到控件里面
                         mEmptyView.setVisibility(VISIBLE);
                         mLoadMoreFooterView.setVisibility(GONE);
                     } else {
@@ -346,13 +345,11 @@ public class UltimateRecyclerView extends RecyclerView {
             }
 
             if (mUltimateAdapter != null) {
-                Log.e(TAG, "onChanged()_begin");
                 mUltimateAdapter.notifyDataSetChanged();
                 //这里就已经可以把尾部进行隐藏了
                 if (mUltimateAdapter.getInnerAdapter().getItemCount() < mPageSize) {
                     mLoadMoreFooterView.setVisibility(GONE);
                 }
-                Log.e(TAG, "onChanged()_end");
             }
         }
 
@@ -362,18 +359,14 @@ public class UltimateRecyclerView extends RecyclerView {
          */
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
-            Log.e("UltimateRecyclerView", "onItemRangeChanged()___begin");
             mUltimateAdapter.notifyItemRangeChanged(positionStart +
                     mUltimateAdapter.getHeaderViewCount() + 1, itemCount);
-            Log.e("UltimateRecyclerView", "onItemRangeChanged()___end");
         }
 
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
-            Log.e("UltimateRecyclerView", "onItemRangeInserted()___begin");
             mUltimateAdapter.notifyItemRangeInserted(positionStart +
                     mUltimateAdapter.getHeaderViewCount() + 1, itemCount);
-            Log.e("UltimateRecyclerView", "onItemRangeInserted()___end");
         }
 
         /**
@@ -382,24 +375,26 @@ public class UltimateRecyclerView extends RecyclerView {
          */
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
-            Log.e("UltimateRecyclerView", "onItemRangeRemoved()___begin");
             mUltimateAdapter.notifyItemRangeRemoved(positionStart + mUltimateAdapter.getHeaderViewCount()
                     + 1, itemCount);
 
-            //TODO 我觉得下面这句话可以不要，因为在onChanged里面已经做了下面这个事了
-            if (mUltimateAdapter.getInnerAdapter().getItemCount() < mPageSize) {
+            int itemCount1 = mUltimateAdapter.getInnerAdapter().getItemCount();
+            if (itemCount1 == 0) {
+                if (mEmptyView != null) {
+                    mEmptyView.setVisibility(VISIBLE);
+                    mLoadMoreFooterView.setVisibility(GONE);
+                }
+            } else if (itemCount1 < mPageSize) {
+                mEmptyView.setVisibility(GONE);
                 mLoadMoreFooterView.setVisibility(GONE);
             }
-            Log.e("UltimateRecyclerView", "onItemRangeRemoved()___end");
         }
 
         @Override
         public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-            Log.e("UltimateRecyclerView", "onItemRangeMoved2()___begin");
             int headerViewCount = mUltimateAdapter.getHeaderViewCount();
             mUltimateAdapter.notifyItemRangeChanged(fromPosition + headerViewCount + 1,
                     toPosition + headerViewCount + 1 + itemCount);
-            Log.e("UltimateRecyclerView", "onItemRangeMoved2()___end");
         }
     }
 
