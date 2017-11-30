@@ -1,4 +1,4 @@
-package shen.da.ye.ultimaterecyclerview;
+package shen.da.ye.ultimaterecyclerview.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import shen.da.ye.ultimaterecyclerview.R;
 import shen.da.ye.ultimaterecyclerview.adapter.LikeLvAdapter;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.UltimateRecyclerView;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.adapter.UltimateRecyclerViewAdapter;

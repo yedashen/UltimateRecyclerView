@@ -10,8 +10,20 @@
         android:onClick="forceRefresh"
         android:text="强制刷新" />
 
-    <shen.da.ye.ultimaterecyclerview.view.recyclerview.UltimateRecyclerView
-        android:id="@+id/like_lv_rcv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <shen.da.ye.ultimaterecyclerview.view.recyclerview.UltimateRecyclerView
+            android:id="@+id/like_lv_rcv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            android:id="@+id/empty_layout"
+            layout="@layout/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>

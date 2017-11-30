@@ -1,16 +1,12 @@
-package shen.da.ye.ultimaterecyclerview;
+package shen.da.ye.ultimaterecyclerview.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
-import shen.da.ye.ultimaterecyclerview.view.animation.RecyclerViewLoadingView;
+import shen.da.ye.ultimaterecyclerview.R;
+import shen.da.ye.ultimaterecyclerview.ui.stick.LikeStickListViewActivity;
 
 /**
  * @author Chenye
@@ -29,4 +25,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, LikeListViewActivity.class));
     }
 
+    public void goLikeStickListViewActivity(View view) {
+        startActivity(new Intent(this, LikeStickListViewActivity.class));
+    }
+
+    public void goLikeFenLanListViewActivity(View view) {
+        startActivity(new Intent(this, ColumnsActivity.class));
+    }
 }

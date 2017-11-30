@@ -10,4 +10,16 @@
         android:onClick="goLikeListViewActivity"
         android:text="去Like_LV_ACTIVITY" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goLikeStickListViewActivity"
+        android:text="去Like_粘性_LV_ACTIVITY" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goLikeFenLanListViewActivity"
+        android:text="去LIKE_分栏_LV_ACTIVITY" />
+
 </LinearLayout>

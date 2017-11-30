@@ -382,10 +382,12 @@ public class UltimateRecyclerView extends RecyclerView {
             if (itemCount1 == 0) {
                 if (mEmptyView != null) {
                     mEmptyView.setVisibility(VISIBLE);
-                    mLoadMoreFooterView.setVisibility(GONE);
                 }
+                mLoadMoreFooterView.setVisibility(GONE);
             } else if (itemCount1 < mPageSize) {
-                mEmptyView.setVisibility(GONE);
+                if (mEmptyView != null) {
+                    mEmptyView.setVisibility(GONE);
+                }
                 mLoadMoreFooterView.setVisibility(GONE);
             }
         }
@@ -699,7 +701,7 @@ public class UltimateRecyclerView extends RecyclerView {
                 }
             }
         } else {
-            Log.e("UltimateRecyclerView", "没有设置滚动监听，所以没有捕捉当前滑动的状态");
+//            没有设置滚动监听，所以没有捕捉当前滑动的状态
         }
 
         boolean b = (mIsUpToDown && dy > 0) || (!mIsUpToDown && dy < 0);

@@ -29,7 +29,7 @@ public class RecyclerViewLoadingView extends View {
      * 下面这个动画不能用static，因为到时候多个对象共享这个，那么会造成要么刷新的动画是stop的，要么
      * 是加载更多的动画是stop的
      */
-    private final BallPulseIndicator DEFAULT_ANIMATION = new BallPulseIndicator();
+    private final LineSpinFadeLoaderIndicator DEFAULT_ANIMATION = new LineSpinFadeLoaderIndicator();
     private static final int MAX_WIDTH = 48;
     private static final int MAX_HEIGHT = 48;
     private static final int MIN_WIDTH = 24;

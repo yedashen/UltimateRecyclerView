@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +20,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LikeListViewActivity"
+            android:name=".ui.LikeListViewActivity"
             android:label="@string/like_lv"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.stick.LikeStickListViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ColumnsActivity"
             android:screenOrientation="portrait" />
     </application>
 
