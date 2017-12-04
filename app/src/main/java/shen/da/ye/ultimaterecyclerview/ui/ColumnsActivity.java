@@ -13,6 +13,7 @@ import java.util.List;
 
 import shen.da.ye.ultimaterecyclerview.MyApplication;
 import shen.da.ye.ultimaterecyclerview.R;
+import shen.da.ye.ultimaterecyclerview.TitleAdapter;
 import shen.da.ye.ultimaterecyclerview.adapter.ColumnsAdapter;
 import shen.da.ye.ultimaterecyclerview.entity.AnimalObject;
 
@@ -37,13 +38,24 @@ public class ColumnsActivity extends AppCompatActivity {
         ColumnsAdapter innerAdapter = new ColumnsAdapter(mFlData);
         DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mRcv.addItemDecoration(decoration);
-        mRcv.setAdapter(innerAdapter);
+
         innerAdapter.setOnItemClickListener(new ColumnsAdapter.NormalItemClickListener() {
             @Override
             public void normalItemClick(String name) {
                 Toast.makeText(MyApplication.mShareInstance, name, Toast.LENGTH_SHORT).show();
             }
         });
+
+        TitleAdapter titleAdapter = new TitleAdapter(innerAdapter);
+        titleAdapter.setSectionizer(new TitleAdapter.Sectionizer() {
+            @Override
+            public String getSectionTitle(Object object) {
+                return ((AnimalObject) object).type;
+            }
+        });
+
+        titleAdapter.setTitles(mFlData);
+        mRcv.setAdapter(titleAdapter);
     }
 
     private void initData() {

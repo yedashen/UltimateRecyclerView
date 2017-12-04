@@ -17,27 +17,28 @@ import shen.da.ye.ultimaterecyclerview.entity.AnimalObject;
  *         基本显示以及做完了，然后应该是写分栏的adapter.
  **/
 
-public class ColumnsAdapter extends RecyclerView.Adapter<ColumnsAdapter.ViewHolder> {
+public class ColumnsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<AnimalObject> mAnimals;
     private NormalItemClickListener mListener = null;
+
 
     public ColumnsAdapter(List<AnimalObject> mAnimals) {
         this.mAnimals = mAnimals;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NormalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fenlan_normal, parent, false);
-        return new ViewHolder(view);
+        return new NormalViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final String name = mAnimals.get(position).name;
-        holder.mTv.setText(name);
+        ((NormalViewHolder) holder).mTv.setText(name);
         if (mListener != null) {
-            holder.mTv.setOnClickListener(new View.OnClickListener() {
+            ((NormalViewHolder) holder).mTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mListener.normalItemClick(name);
@@ -51,11 +52,11 @@ public class ColumnsAdapter extends RecyclerView.Adapter<ColumnsAdapter.ViewHold
         return mAnimals.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class NormalViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTv;
 
-        public ViewHolder(View itemView) {
+        public NormalViewHolder(View itemView) {
             super(itemView);
             mTv = (TextView) itemView.findViewById(R.id.item_fen_lan_normal_tv);
         }
@@ -68,5 +69,6 @@ public class ColumnsAdapter extends RecyclerView.Adapter<ColumnsAdapter.ViewHold
     public void setOnItemClickListener(NormalItemClickListener listener) {
         mListener = listener;
     }
+
 }
 
