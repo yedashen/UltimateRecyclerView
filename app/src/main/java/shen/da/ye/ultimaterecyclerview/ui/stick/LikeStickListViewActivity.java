@@ -71,4 +71,8 @@ public class LikeStickListViewActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

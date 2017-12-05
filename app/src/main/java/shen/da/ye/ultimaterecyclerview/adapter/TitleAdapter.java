@@ -1,4 +1,4 @@
-package shen.da.ye.ultimaterecyclerview;
+package shen.da.ye.ultimaterecyclerview.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import shen.da.ye.ultimaterecyclerview.R;
 
 /**
  * @author ChenYe
@@ -58,11 +60,9 @@ public class TitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TITLE_TYPE) {
-            Log.e("TitleAdapter", "onCreateViewHolder(true)");
             View view = View.inflate(parent.getContext(), R.layout.item_fen_lan_title, null);
             return new TitleViewHolder(view);
         } else {
-            Log.e("TitleAdapter", "onCreateViewHolder(false)");
             return mInnerAdapter.onCreateViewHolder(parent, viewType - 1);
         }
     }
@@ -70,10 +70,8 @@ public class TitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (isTitlePosition(position)) {
-            Log.e("TitleAdapter", "onBindViewHolder(true)");
             ((TitleViewHolder) holder).mTitleTv.setText(mTitles.get(position).title);
         } else {
-            Log.e("TitleAdapter", "onBindViewHolder(false)");
             mInnerAdapter.onBindViewHolder(holder, convertPosition(position));
         }
     }
@@ -86,7 +84,6 @@ public class TitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public long getItemId(int position) {
-        Log.e("TitleAdapter", "getItemId()");
         return isTitlePosition(position) ? Integer.MAX_VALUE - mTitles.indexOfKey(position) : mInnerAdapter.getItemId(convertPosition(position));
     }
 
@@ -194,7 +191,6 @@ public class TitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             title.titlePosition = title.firstPosition + offset;
             mTitles.append(title.titlePosition, title);
             ++offset;
-            Log.e("TitleAdapter", title.toString()+"\n");
         }
 
         notifyDataSetChanged();
@@ -212,7 +208,6 @@ public class TitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 titles.add(new Title(i, sectionTitle));
             }
         }
-        Log.e("TitleAdapter", titles.toString());
 //        {猫科动物=4, 鸟类=6, 人类=8, 鱼类=12, 蛇类=16}
         return titles;
     }

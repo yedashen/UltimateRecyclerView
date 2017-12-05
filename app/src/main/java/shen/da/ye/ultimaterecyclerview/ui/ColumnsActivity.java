@@ -13,7 +13,7 @@ import java.util.List;
 
 import shen.da.ye.ultimaterecyclerview.MyApplication;
 import shen.da.ye.ultimaterecyclerview.R;
-import shen.da.ye.ultimaterecyclerview.TitleAdapter;
+import shen.da.ye.ultimaterecyclerview.adapter.TitleAdapter;
 import shen.da.ye.ultimaterecyclerview.adapter.ColumnsAdapter;
 import shen.da.ye.ultimaterecyclerview.entity.AnimalObject;
 

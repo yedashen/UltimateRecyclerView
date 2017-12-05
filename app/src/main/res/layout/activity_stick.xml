@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sticky_rcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <shen.da.ye.ultimaterecyclerview.view.recyclerview.stick.StickyHeadContainer
+        android:id="@+id/sticky_shc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/sticky_fl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#aaaaff">
+
+            <TextView
+                android:id="@+id/sticky_header_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="#eeeeee"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/sticky_header_more_iv"
+                android:layout_width="24dp"
+                android:layout_height="6dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/more"
+                android:tint="#223344" />
+
+            <CheckBox
+                android:id="@+id/sticky_header_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="46dp"
+                android:checked="false"
+                android:clickable="true" />
+
+        </FrameLayout>
+    </shen.da.ye.ultimaterecyclerview.view.recyclerview.stick.StickyHeadContainer>
+</RelativeLayout>

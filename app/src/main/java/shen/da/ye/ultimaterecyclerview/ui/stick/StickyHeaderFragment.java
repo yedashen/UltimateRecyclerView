@@ -14,10 +14,10 @@ import android.view.ViewGroup;
 import shen.da.ye.ultimaterecyclerview.MyApplication;
 import shen.da.ye.ultimaterecyclerview.R;
 import shen.da.ye.ultimaterecyclerview.adapter.StickyHeaderAdapter;
-import shen.da.ye.ultimaterecyclerview.view.decoration.StickyHeaderDecoration;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.UltimateRecyclerView;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.adapter.UltimateRecyclerViewAdapter;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.devider.DividerDecoration;
+import shen.da.ye.ultimaterecyclerview.view.recyclerview.devider.StickyHeaderDecoration;
 
 /**
  * @author ChenYe
@@ -60,6 +60,7 @@ public class StickyHeaderFragment extends Fragment implements RecyclerView.OnIte
 
         mUltimateRecyclerView.addItemDecoration(mDecoration, 1);
 
+        mUltimateRecyclerView.addOnItemTouchListener(this);
     }
 
     @Override
@@ -72,7 +73,11 @@ public class StickyHeaderFragment extends Fragment implements RecyclerView.OnIte
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
         if (e.getAction() == MotionEvent.ACTION_UP) {
             View headerViewUnder = mDecoration.findHeaderViewUnder(e.getX(), e.getY());
-            Log.e("StickHeader", "click");
+            if (headerViewUnder != null) {
+                Log.e("Sticky", "headerViewUnder != null");
+            } else {
+                Log.e("Sticky", "headerViewUnder == null");
+            }
         }
     }
 

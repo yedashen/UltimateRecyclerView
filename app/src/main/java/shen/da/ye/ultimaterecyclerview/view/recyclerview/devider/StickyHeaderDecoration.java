@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package shen.da.ye.ultimaterecyclerview.view.decoration;
+package shen.da.ye.ultimaterecyclerview.view.recyclerview.devider;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -37,7 +37,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
 
     private Map<Long, RecyclerView.ViewHolder> mHeaderCache;
 
-    private StickAdapterListener mAdapter;
+    private StickAdapterListener mListener;
 
     private boolean mRenderInline;
 
@@ -52,7 +52,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
      * @param adapter the sticky header adapter to use
      */
     public StickyHeaderDecoration(StickAdapterListener adapter, boolean renderInline) {
-        mAdapter = adapter;
+        mListener = adapter;
         mHeaderCache = new HashMap<>();
         mRenderInline = renderInline;
     }
@@ -65,7 +65,9 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         int position = parent.getChildAdapterPosition(view);
 
         int headerHeight = 0;
+        //RecyclerView.NO_POSITION 无效的position
         if (position != RecyclerView.NO_POSITION && hasHeader(position)) {
+            //走到这里说明需要添加一个header
             View header = getHeader(parent, position).itemView;
             headerHeight = getHeaderHeightForLayout(header);
         }
@@ -91,34 +93,37 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
                     x <= child.getRight() + translationX &&
                     y >= child.getTop() + translationY &&
                     y <= child.getBottom() + translationY) {
-                Log.e("StickHeaderDecoration", "点到header了");
                 return child;
             }
         }
-        Log.e("StickHeaderDecoration", "没点到header");
         return null;
     }
 
+    /**
+     * @param position item的Position
+     * @return 是否需要在当前item前面设置一个头部头部 true是需要，false不需要
+     */
     private boolean hasHeader(int position) {
         if (position == 0) {
             return true;
         }
 
         int previous = position - 1;
-        return mAdapter.getHeaderId(position) != mAdapter.getHeaderId(previous);
+        //判断当前item的headerId与上一个是否一样，一样就不需要再添加header了
+        return mListener.getHeaderId(position) != mListener.getHeaderId(previous);
     }
 
     private RecyclerView.ViewHolder getHeader(RecyclerView parent, int position) {
-        final long key = mAdapter.getHeaderId(position);
+        final long key = mListener.getHeaderId(position);
 
         if (mHeaderCache.containsKey(key)) {
             return mHeaderCache.get(key);
         } else {
-            final RecyclerView.ViewHolder holder = mAdapter.onCreateHeaderViewHolder(parent);
+            final RecyclerView.ViewHolder holder = mListener.onCreateHeaderViewHolder(parent);
             final View header = holder.itemView;
 
             //noinspection unchecked
-            mAdapter.onBindHeaderViewHolder(holder, position);
+            mListener.onBindHeaderViewHolder(holder, position);
 
             int widthSpec = View.MeasureSpec.makeMeasureSpec(parent.getWidth(), View.MeasureSpec.EXACTLY);
             int heightSpec = View.MeasureSpec.makeMeasureSpec(parent.getHeight(), View.MeasureSpec.UNSPECIFIED);
@@ -168,12 +173,12 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         int top = ((int) child.getY()) - headerHeight;
         if (layoutPos == 0) {
             final int count = parent.getChildCount();
-            final long currentId = mAdapter.getHeaderId(adapterPos);
+            final long currentId = mListener.getHeaderId(adapterPos);
             // find next view with header and compute the offscreen push if needed
             for (int i = 1; i < count; i++) {
                 int adapterPosHere = parent.getChildAdapterPosition(parent.getChildAt(i));
                 if (adapterPosHere != RecyclerView.NO_POSITION) {
-                    long nextId = mAdapter.getHeaderId(adapterPosHere);
+                    long nextId = mListener.getHeaderId(adapterPosHere);
                     if (nextId != currentId) {
                         final View next = parent.getChildAt(i);
                         final int offset = ((int) next.getY()) - (headerHeight + getHeader(parent, adapterPosHere).itemView.getHeight());
