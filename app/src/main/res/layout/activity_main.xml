@@ -22,4 +22,9 @@
         android:onClick="goLikeFenLanListViewActivity"
         android:text="去LIKE_分栏_LV_ACTIVITY" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goStickyActivity"
+        android:text="去粘性RecyclerView" />
 </LinearLayout>

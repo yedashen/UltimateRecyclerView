@@ -32,4 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public void goLikeFenLanListViewActivity(View view) {
         startActivity(new Intent(this, ColumnsActivity.class));
     }
+
+    public void goStickyActivity(View view) {
+        startActivity(new Intent(this, StickyRecyclerViewActivity.class));
+    }
 }

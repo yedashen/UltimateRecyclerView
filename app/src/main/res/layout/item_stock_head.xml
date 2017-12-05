@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#228899"
+        android:gravity="center"
+        android:text="股价风云榜"
+        android:textColor="#ffeeff"
+        android:textSize="20sp" />
+
+</RelativeLayout>

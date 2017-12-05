@@ -29,6 +29,9 @@
         <activity
             android:name=".ui.ColumnsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.StickyRecyclerViewActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
