@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -37,6 +38,7 @@ import shen.da.ye.ultimaterecyclerview.view.recyclerview.stick.StickyHeadContain
 /**
  * @author ChenYe
  *         created by on 2017/12/5 0005. 14:08
+ *         粘性RecyclerView
  **/
 
 public class StickyRecyclerViewActivity extends Activity {
@@ -81,7 +83,12 @@ public class StickyRecyclerViewActivity extends Activity {
                 }
             }
         });
-
+        mStickyAdapter.setOnItemClickListener2(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(MyApplication.mShareInstance, "点击了粘性头部的更多", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mStickyHeaderCheckbox.setOnCheckedChangeListener(mCheckboxChangedListener);
         mStickyHeader.setOnClickListener(mHeaderOnClickListener);
@@ -183,6 +190,7 @@ public class StickyRecyclerViewActivity extends Activity {
     private View.OnClickListener mMoreIvClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Log.e("Sticky", "点击了粘性头部的更多");
             Toast.makeText(MyApplication.mShareInstance, "点击了粘性头部的更多", Toast.LENGTH_SHORT).show();
         }
     };

@@ -7,8 +7,10 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import shen.da.ye.ultimaterecyclerview.R;
@@ -52,8 +54,16 @@ public class StickyAdapter extends StickyBaseAdapter<StockEntity.StockInfo, Stic
     }
 
     @Override
-    protected void onBindItemHolder(SuperViewHolder holder, int position, StockEntity.StockInfo item) {
+    protected void onBindItemHolder(SuperViewHolder holder, final int position, StockEntity.StockInfo item) {
         int itemViewType = holder.getItemViewType();
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(v, position);
+                }
+            });
+        }
         switch (itemViewType) {
             case TYPE_STICKY_HEAD:
                 CheckBox checkBox = holder.getView(R.id.checkbox);
@@ -61,6 +71,15 @@ public class StickyAdapter extends StickyBaseAdapter<StockEntity.StockInfo, Stic
                 checkBox.setOnCheckedChangeListener(this);
                 checkBox.setChecked(item.check);
                 ((TextView) holder.getView(R.id.tv_stock_name)).setText(item.stickyHeadName);
+                ImageView mIv = (ImageView) holder.getView(R.id.iv_more);
+                if (mOnItemClickListener2 != null) {
+                    mIv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnItemClickListener2.onItemClick(v, position);
+                        }
+                    });
+                }
                 break;
             case TYPE_DATA:
                 setData(holder, item);

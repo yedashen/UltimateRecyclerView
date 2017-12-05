@@ -36,10 +36,10 @@
 
             <ImageView
                 android:id="@+id/sticky_header_more_iv"
-                android:layout_width="24dp"
-                android:layout_height="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingRight="16dp"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginRight="16dp"
                 android:src="@mipmap/more"
                 android:tint="#223344" />
 

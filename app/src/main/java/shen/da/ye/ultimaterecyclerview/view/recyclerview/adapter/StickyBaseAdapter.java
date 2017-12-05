@@ -38,6 +38,8 @@ public abstract class StickyBaseAdapter<T, V extends StickyHeadEntity<T>> extend
 
     protected OnItemClickListener mOnItemClickListener = null;
 
+    protected OnItemClickListener mOnItemClickListener2 = null;
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         FullSpanUtil.onAttachedToRecyclerView(recyclerView, this, TYPE_STICKY_HEAD);
@@ -62,14 +64,6 @@ public abstract class StickyBaseAdapter<T, V extends StickyHeadEntity<T>> extend
 
     @Override
     public void onBindViewHolder(SuperViewHolder holder, final int position) {
-        if (mOnItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(v, position);
-                }
-            });
-        }
         onBindItemHolder(holder, position, mDataList.get(position).getData());
     }
 
@@ -84,8 +78,18 @@ public abstract class StickyBaseAdapter<T, V extends StickyHeadEntity<T>> extend
         return mDataList.get(position).getItemType();
     }
 
+    /**
+     * 这里有很多点击事件需要设置，要根据实际情况，目前我这里有两个点击事件，所以这个item点击事件有两个，我就
+     * 直接写点击事件1和点击事件2了
+     *
+     * @param listener
+     */
     public void setOnItemClickListener(OnItemClickListener listener) {
         mOnItemClickListener = listener;
+    }
+
+    public void setOnItemClickListener2(OnItemClickListener listener) {
+        mOnItemClickListener2 = listener;
     }
 
     /**
