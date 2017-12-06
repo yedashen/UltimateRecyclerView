@@ -27,4 +27,22 @@
         android:layout_height="wrap_content"
         android:onClick="goStickyActivity"
         android:text="去粘性RecyclerView" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goCustomCompose"
+        android:text="去侧滑自定义控件的Activity" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goSwipeRecyclerViewActivity"
+        android:text="去侧滑item的RecyclerViewActivity" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goPartialRefresh"
+        android:text="去局部刷新" />
 </LinearLayout>

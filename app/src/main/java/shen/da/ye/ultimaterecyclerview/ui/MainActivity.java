@@ -36,4 +36,16 @@ public class MainActivity extends AppCompatActivity {
     public void goStickyActivity(View view) {
         startActivity(new Intent(this, StickyRecyclerViewActivity.class));
     }
+
+    public void goCustomCompose(View view) {
+        startActivity(new Intent(this, SwipeComposeActivity.class));
+    }
+
+    public void goSwipeRecyclerViewActivity(View view) {
+        startActivity(new Intent(this, SwipeRecyclerViewActivity.class));
+    }
+
+    public void goPartialRefresh(View view) {
+
+    }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwipeItemView">
+        <attr name="leftSwipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="rightSwipeEnable" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -32,6 +32,14 @@
         <activity
             android:name=".ui.StickyRecyclerViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SwipeComposeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.SwipeRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

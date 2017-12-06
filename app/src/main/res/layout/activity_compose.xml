@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <shen.da.ye.ultimaterecyclerview.view.swipe.SwipeItem
+        android:id="@+id/swipe_item1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#6628dc6a">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ccc"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="这是内容区域"
+                android:textColor="#000"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:id="@+id/content_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <Button
+                android:id="@+id/content_bt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容区的按钮1" />
+
+            <Button
+                android:id="@+id/content_bt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容区的按钮2" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/swipe_bt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="右边区域按钮1" />
+
+        <Button
+            android:id="@+id/swipe_bt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="右边区域按钮2" />
+    </shen.da.ye.ultimaterecyclerview.view.swipe.SwipeItem>
+
+    <shen.da.ye.ultimaterecyclerview.view.swipe.SwipeItem
+        android:id="@+id/swipe_item2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="#66273ca7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ccc"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="这是内容区域"
+                android:textColor="#000"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:id="@+id/content_iv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <Button
+                android:id="@+id/content_bt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容区的按钮1" />
+
+            <Button
+                android:id="@+id/content_bt4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容区的按钮2" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/swipe_bt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="左边区域按钮1" />
+
+        <Button
+            android:id="@+id/swipe_bt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="左边区域按钮2" />
+
+    </shen.da.ye.ultimaterecyclerview.view.swipe.SwipeItem>
+
+    <Button
+        android:onClick="close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭正在打开的Swipe_Item" />
+</LinearLayout>
