@@ -3,6 +3,8 @@ package shen.da.ye.ultimaterecyclerview.adapter;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.List;
+
 import shen.da.ye.ultimaterecyclerview.R;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.adapter.BaseDataAdapter;
 import shen.da.ye.ultimaterecyclerview.view.recyclerview.adapter.SuperViewHolder;
@@ -24,5 +26,14 @@ public class LikeLvAdapter extends BaseDataAdapter<String> {
     protected void onBindItemHolder(SuperViewHolder holder, int position) {
         TextView textView = holder.getView(R.id.item_like_lv_tv);
         textView.setText(mDataList.get(position));
+    }
+
+    @Override
+    public void onBindItemHolder(SuperViewHolder holder, int position, List<Object> payloads) {
+        super.onBindItemHolder(holder, position, payloads);
+        String o = (String) payloads.get(0);
+        Log.e("Like", o);
+        TextView tv = (TextView) holder.getView(R.id.item_like_lv_tv);
+        tv.setText(mDataList.get(position));
     }
 }

@@ -40,6 +40,9 @@
             android:name=".ui.SwipeRecyclerViewActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.PartialRefreshActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
