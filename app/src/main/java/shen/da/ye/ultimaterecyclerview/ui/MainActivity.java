@@ -52,4 +52,12 @@ public class MainActivity extends AppCompatActivity {
     public void goAnimationActivity(View view) {
         startActivity(new Intent(this, AnimationRecyclerViewActivity.class));
     }
+
+    public void goMultiTypeRevActivity(View view) {
+        startActivity(new Intent(this, MultiTypeActivity.class));
+    }
+
+    public void goExpandActivity(View view) {
+        startActivity(new Intent(this, ExpandRcvActivity.class));
+    }
 }

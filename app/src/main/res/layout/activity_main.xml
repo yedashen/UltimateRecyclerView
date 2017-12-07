@@ -7,40 +7,51 @@
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goLikeListViewActivity"
-        android:text="去Like_ListView_Activity" />
+        android:text="Like_ListView_Activity" />
 
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goLikeStickListViewActivity"
-        android:text="去Like_粘性_ListView_Activity" />
-
-    <TextView
-        style="@style/HomeTvStyle"
-        android:onClick="goLikeFenLanListViewActivity"
-        android:text="去Like_分栏_ListView_Activity" />
+        android:text="Like_粘性_ListView_Activity(废弃了)" />
 
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goStickyActivity"
-        android:text="去粘性RecyclerView" />
+        android:text="粘性RecyclerView" />
+
+    <TextView
+        style="@style/HomeTvStyle"
+        android:onClick="goLikeFenLanListViewActivity"
+        android:text="Like_分栏_ListView_Activity" />
+
 
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goCustomCompose"
-        android:text="去侧滑自定义控件的Activity" />
+        android:text="侧滑自定义控件的Activity" />
 
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goSwipeRecyclerViewActivity"
-        android:text="去侧滑item的RecyclerViewActivity" />
+        android:text="侧滑item的RecyclerViewActivity" />
 
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goPartialRefresh"
-        android:text="去局部刷新" />
+        android:text="局部刷新" />
 
     <TextView
         style="@style/HomeTvStyle"
         android:onClick="goAnimationActivity"
-        android:text="去动画RecyclerView" />
+        android:text="动画RecyclerView" />
+
+    <TextView
+        style="@style/HomeTvStyle"
+        android:onClick="goMultiTypeRevActivity"
+        android:text="多类型布局" />
+
+    <TextView
+        style="@style/HomeTvStyle"
+        android:onClick="goExpandActivity"
+        android:text="Item可展开" />
 </LinearLayout>

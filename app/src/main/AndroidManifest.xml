@@ -47,6 +47,14 @@
         <activity
             android:name=".ui.AnimationRecyclerViewActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.MultiTypeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.ExpandRcvActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
