@@ -48,4 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public void goPartialRefresh(View view) {
         startActivity(new Intent(this, PartialRefreshActivity.class));
     }
+
+    public void goAnimationActivity(View view) {
+        startActivity(new Intent(this, AnimationRecyclerViewActivity.class));
+    }
 }

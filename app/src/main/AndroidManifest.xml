@@ -43,6 +43,10 @@
         <activity
             android:name=".ui.PartialRefreshActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.AnimationRecyclerViewActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -4,45 +4,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goLikeListViewActivity"
-        android:text="去Like_LV_ACTIVITY" />
+        android:text="去Like_ListView_Activity" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goLikeStickListViewActivity"
-        android:text="去Like_粘性_LV_ACTIVITY" />
+        android:text="去Like_粘性_ListView_Activity" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goLikeFenLanListViewActivity"
-        android:text="去LIKE_分栏_LV_ACTIVITY" />
+        android:text="去Like_分栏_ListView_Activity" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goStickyActivity"
         android:text="去粘性RecyclerView" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goCustomCompose"
         android:text="去侧滑自定义控件的Activity" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goSwipeRecyclerViewActivity"
         android:text="去侧滑item的RecyclerViewActivity" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/HomeTvStyle"
         android:onClick="goPartialRefresh"
         android:text="去局部刷新" />
+
+    <TextView
+        style="@style/HomeTvStyle"
+        android:onClick="goAnimationActivity"
+        android:text="去动画RecyclerView" />
 </LinearLayout>
